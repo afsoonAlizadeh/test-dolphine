@@ -5,9 +5,18 @@
 
 @font-face {
   font-family: IranSans;
-    src: url(assets/fonts/woff/IRANSansWeb.woff);
+    src: url(assets/fonts/iran_sans_light.ttf);
     font-weight: normal;
 }
 
-html, body { height: 100%;   font-family: IranSans, sans-serif !important; font-size: 10px !important;}
-body { margin: 0;   font-family: IranSans, sans-serif !important;}
+@font-face {
+  font-family: Noto;
+    src: url(assets/fonts/noto.ttf);
+    font-weight: normal;
+}
+
+html, body { height: 100%;   font-family: IranSans, Noto !important; font-size: 10px !important;}
+body { margin: 0;   font-family: IranSans, Noto !important;}
+.font-IranSans{
+  font-family: IranSans !important;
+}

@@ -9,10 +9,10 @@ const routes: Routes = [
       import('src/app/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'roles',
+    path: 'units',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('src/app/role/role.module').then((m) => m.RoleModule),
+      import('src/app/units/units.module').then((m) => m.UnitsModule),
   },
   {
     path: '**',

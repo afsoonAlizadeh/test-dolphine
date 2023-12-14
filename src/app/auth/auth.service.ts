@@ -21,9 +21,8 @@ export class AuthService {
             subscriber.complete();
             return;
           }
-
           const user: SignUp | undefined = users.find((u: SignUp) => {
-            return u.username === dto.username && u.password === dto.password;
+            return u.email === dto.email && u.password === dto.password;
           });
 
           if (user) {

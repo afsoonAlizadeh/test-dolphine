@@ -1,16 +1,9 @@
 <section class="container-fluid h-100">
-      <div class="row h-100">
-              <div class="col-lg-4 px-3 py-5">
-                <router-outlet></router-outlet>
-              </div>
-              <div class="col-lg-8">
-                        <img src="assets/images/ic_login3.png" alt="Logo" class="" style="
-                        object-fit: cover;
-                        height: 100%;
-                        position: absolute;
-                        right: 0;
-                        bottom: 0;
-                    "/>
-              </div>
-            </div>
+  <div class="row h-100">
+    <div class="col-lg-4 auth-page">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-lg-8 bg-auth">
+    </div>
+  </div>
 </section>

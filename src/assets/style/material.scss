@@ -43,13 +43,13 @@ button,
 .mdc-tab__text-label,
 mat-label,
 .mat-tab-link {
-  font-family: IranSans, Roboto !important;
+  font-family: Noto !important;
 }
 
-.mat-mdc-text-field-wrapper , .mat-mdc-form-field-flex{
+.mat-mdc-text-field-wrapper , .mat-mdc-form-field-flex , .mat-mdc-raised-button{
   margin: 0 !important;
   padding: 0 !important;
-  height: 4rem !important;
+  height: 5rem !important;
 }
 
 .mdc-floating-label{
@@ -58,8 +58,8 @@ mat-label,
 
 .mat-mdc-form-field-infix , input {
   padding: 0 0.5rem 0 0.5rem !important;
-  min-height:4rem !important;
-  height: 4rem !important;
+  min-height: 5rem !important;
+  height: 5rem !important;
   color:var(--gray) !important;
   font-weight: lighter !important;
   font-size: 1.5rem;

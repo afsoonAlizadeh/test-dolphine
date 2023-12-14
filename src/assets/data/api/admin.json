@@ -1,14 +1,14 @@
 [
   {
-	"username":"admin",
+	"email":"admin@gmail.com",
 	"password":"admin@123"
   },
   {
-    "username":"1",
+    "email":"1@gmail.com",
     "password":"1"
-    } ,
-     {
-      "username":"string",
-      "password":"string"
-      }
+  } ,
+  {
+    "email":"string@gmail.com",
+    "password":"string"
+  }
 ]

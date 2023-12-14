@@ -1,0 +1,11 @@
+.bg-auth{
+    background-image: url('./../../../../assets/images/ic_login3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

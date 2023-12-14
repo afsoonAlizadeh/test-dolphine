@@ -16,9 +16,11 @@ export class SignInComponent {
   };
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
+  hide = true;
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -26,7 +28,7 @@ export class SignInComponent {
     this.auth.signIn(this.form.value).subscribe({
       next: () => {
         localStorage.setItem('token', JSON.stringify('Fake User'));
-        this.router.navigate(['/roles']);
+        this.router.navigate(['/units']);
       },
     });
   }

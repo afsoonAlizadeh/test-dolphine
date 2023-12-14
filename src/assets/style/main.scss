@@ -1,18 +1,22 @@
 @import "./variables.scss";
 
+
+.dgray-text{
+    color:var(--dgray) !important
+}
+
 .gray-text{
     color:var(--gray) !important
 }
 
-.violet-bg{
-    background-color:var(--violet) !important
+.green-bg{
+    background-color:var(--green) !important
+}
+
+.green-text{
+    color:var(--green) !important
 }
 
 .flip{
     transform: rotateY(180deg)
-}
-
-.stick-bottom {
-    position: absolute;
-    bottom: 0;
 }
