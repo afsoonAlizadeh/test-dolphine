@@ -1,0 +1,16 @@
+<app-auth-header [header]="header"></app-auth-header>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="outline" class="mt-3">
+        <mat-label class="fs-6">نام کاربری</mat-label>
+        <input type="text" matInput formControlName="username"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mt-3">
+        <mat-label class="fs-6">رمز عبور</mat-label>
+        <input type="password" matInput formControlName="password"/>
+      </mat-form-field>
+</form>
+
+<footer class="stick-bottom w-100">
+  <button mat-raised-button [disabled]="!form.valid" class="w-100 violet-bg text-white" (click)="submit()">ورود</button>
+</footer>

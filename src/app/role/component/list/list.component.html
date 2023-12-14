@@ -1,0 +1,43 @@
+<header>
+  <button mat-raised-button class="violet-bg text-white" (click)="addRole()">افزودن</button>
+</header>
+
+
+<main>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="#">
+      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> # </th>
+      <td mat-cell *matCellDef="let i = index"  class="text-end fs-6"> {{i +1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> نام </th>
+      <td mat-cell *matCellDef="let element"  class="text-end fs-6"> {{element.name || '-'}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> توضیحات </th>
+      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.description || '-'}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="active">
+      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> فعال </th>
+      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.active || '-'}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="actionIds">
+      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> نقش ها </th>
+      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.actionIds || '-'}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef class="text-start"></th>
+      <td mat-cell *matCellDef="let element" class="text-start"> 
+        <mat-icon fontIcon="edit" class="fs-3 fw-lighter p-1"></mat-icon>
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</main>

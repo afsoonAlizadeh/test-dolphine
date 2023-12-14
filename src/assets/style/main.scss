@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.gray-text{
+    color:var(--gray) !important
+}
+
+.violet-bg{
+    background-color:var(--violet) !important
+}
+
+.flip{
+    transform: rotateY(180deg)
+}
+
+.stick-bottom {
+    position: absolute;
+    bottom: 0;
+}

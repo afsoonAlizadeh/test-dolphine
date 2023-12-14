@@ -1,0 +1,64 @@
+
+<div dir="rtl" class="text-center mt-5">
+    <div class="row p-0 m-0">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-form-field dir="rtl" class="example-full-width col">
+                        <mat-icon matPrefix>serach</mat-icon>
+                        <input type="text" matInput placeholder="جستجوی عنوان دسترسی" [(ngModel)]="searchKey">
+                    </mat-form-field>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <mat-tree dir="rtl" [dataSource]="dataSource" [treeControl]="treeControl" class="w-100 text-left">
+                        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                          <mat-checkbox class="checklist-leaf-node" [value]="node.id"
+                                        [checked]="node.isChecked"
+                                        (change)="todoLeafItemSelectionToggle(node,$event)"><small>{{node.name}}</small></mat-checkbox>
+                        </mat-tree-node>
+
+                        <mat-tree-node dir="rtl" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                          <mat-checkbox class="checklist-leaf-node" [value]="node.id"
+                          [checked]="node.isChecked"
+                          (change)="todoLeafItemSelectionToggle(node,$event)">{{node.name}}</mat-checkbox>
+                          <button mat-icon-button matTreeNodeToggle
+                                  class=""
+                                  [value]="node.id"
+                                  [attr.aria-label]="'Toggle ' + node.name">
+                            <span class="material-icons mat-icon-rtl-mirror fz-0-9 mt-10">
+                            {{treeControl.isExpanded(node) ? 'expand_less' : 'expand_more'}}</span>
+                          </button>
+                        </mat-tree-node>  
+
+                    </mat-tree>      
+                </mat-card-content>
+              </mat-card>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 mt-2">
+            <mat-accordion class="example-headers-align" *ngFor="let accessAction of accessActions">
+                <mat-expansion-panel expanded="true"  hideToggle="true" #panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h3 class="ps-4 bg-white text-nowrap mb-0 fw-bolder">{{accessAction.name}}</h3>
+                        <mat-icon>{{panel.expanded? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}</mat-icon>
+                        <div style="background-color: #ccc; height: 2px;width: 90%;"></div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-radio-group aria-label="Select an option" class=" bg-white">
+                            <mat-radio-button *ngFor="let type of accessType" [value]="type._id" (change)="levelAccess(type.value , accessAction._id)">{{type.name}}</mat-radio-button>
+                          </mat-radio-group>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                  <ul class="d-flex">
+                    <li *ngFor="let access of accessAction.items" class="col-4 fs-4 fw-bold text-black-50 mt-3 text-end">
+                        {{access.name}}
+                    </li>
+                </ul>
+              
+                </mat-expansion-panel>
+              </mat-accordion>
+        </div>
+    </div>
+</div>
