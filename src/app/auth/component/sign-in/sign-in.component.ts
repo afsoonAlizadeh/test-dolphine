@@ -11,8 +11,8 @@ import { Header } from '../../config/interface/header';
 })
 export class SignInComponent {
   header: Header = {
-    icon: 'input',
-    action: 'ورود',
+    action: 'Sign in',
+    description: 'Welcome to FMS',
   };
 
   form: FormGroup = new FormGroup({
