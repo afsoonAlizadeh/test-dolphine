@@ -8,7 +8,7 @@ import { Header } from '../../config/interface/header';
 })
 export class AuthHeaderComponent {
   @Input() header: Header = {
-    icon: '',
     action: '',
+    description: '',
   };
 }
