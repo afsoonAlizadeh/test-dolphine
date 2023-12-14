@@ -7,9 +7,15 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UnitsListComponent } from './component/list/list.component';
+import { CategoryComponent } from './component/category/category.component';
 
 @NgModule({
-  declarations: [UnitsOutletComponent, UnitsListComponent, AddUnitComponent],
+  declarations: [
+    UnitsOutletComponent,
+    CategoryComponent,
+    UnitsListComponent,
+    AddUnitComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddUnitComponent } from '../component/add-unit/add-unit.component';
-import { UnitsListComponent } from '../component/list/list.component';
+import { CategoryComponent } from '../component/category/category.component';
 export const routes: Routes = [
   {
     path: '',
-    component: UnitsListComponent,
+    component: CategoryComponent,
     children: [
       {
         path: 'list',
-        component: UnitsListComponent,
+        component: CategoryComponent,
       },
       {
         path: 'add',
