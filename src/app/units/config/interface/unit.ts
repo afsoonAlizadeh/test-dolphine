@@ -6,6 +6,7 @@ export interface Units {
   IMEI: string;
   tags: any;
   LTP: string;
+  center?: number[];
 }
 
 export enum Tags {

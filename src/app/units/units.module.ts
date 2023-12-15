@@ -10,6 +10,8 @@ import { UnitsListComponent } from './component/list/list.component';
 import { CategoryComponent } from './component/category/category.component';
 import { ConnectionPipe } from './config/pipe/connection';
 import { TagsPipe } from './config/pipe/tags';
+import { MonitoringComponent } from './component/monitoring/monitoring.component';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { TagsPipe } from './config/pipe/tags';
     CategoryComponent,
     UnitsListComponent,
     AddUnitComponent,
+    MonitoringComponent,
     ConnectionPipe,
     TagsPipe,
   ],
@@ -27,6 +30,7 @@ import { TagsPipe } from './config/pipe/tags';
     RouterModule,
     SharedModule,
     UnitsRoutingModule,
+    // LeafletModule,
   ],
   providers: [ConnectionPipe, TagsPipe],
 })

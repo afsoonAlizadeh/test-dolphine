@@ -1,3 +1,5 @@
+@import './../../../../assets/style/responsive';
+
 .bg-auth{
     background-image: url('./../../../../assets/images/ic_login3.png');
     background-repeat: no-repeat;
@@ -8,4 +10,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.none {
+    @include media-max($sm){
+        display: none;
+    }
 }
