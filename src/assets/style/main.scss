@@ -9,14 +9,30 @@
     color:var(--gray) !important
 }
 
-.green-bg{
+.dgreen-bg{
     background-color:var(--green) !important
 }
 
-.green-text{
+.green-bg{
+    background-color:var(--light-green) !important
+}
+
+.dgreen-text{
     color:var(--green) !important
 }
 
-.flip{
-    transform: rotateY(180deg)
+.dorang-bg{
+    background-color:var(--orang) !important
+}
+
+.orang-bg{
+    background-color:var(--light-orang) !important
+}
+
+.dorang-text{
+    color:var(--orang) !important
+}
+
+.rounded {
+    border-radius: 50px !important;
 }

@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  CategoryTree,
-  levelAcess,
-  Products,
-} from '../../config/interface/role';
 import { UnitsService } from '../../units.service';
 
 @Component({
@@ -14,15 +9,11 @@ import { UnitsService } from '../../units.service';
   styleUrls: ['./add-unit.component.scss'],
 })
 export class AddUnitComponent {
-  products: Products[] = [];
-  categoryTree: CategoryTree[] = [];
-  tab?: Products;
   changeTab = false;
   form: FormGroup = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     description: new FormControl<string>(''),
     active: new FormControl<boolean>(false),
-    actionIds: new FormControl<levelAcess[]>([]),
   });
 
   constructor(private unit: UnitsService, private router: Router) {}
@@ -33,19 +24,19 @@ export class AddUnitComponent {
   }
 
   get categoryContent() {
-    return this.categoryTree.filter((c) => c.productId === this.tab?._id);
+    return; //this.categoryTree.filter((c) => c.productId === this.tab?._id);
   }
 
   fetchProducts() {
-    this.unit.fetchProducts().subscribe((products) => {
-      this.products = products;
-    });
+    // this.unit.fetchProducts().subscribe((products) => {
+    //   this.products = products;
+    // });
   }
 
   fetchCategoryTree() {
-    this.unit.fetchCategoriesTree().subscribe((categoryTree) => {
-      this.categoryTree = this.convertFlatToTree(categoryTree);
-    });
+    // this.unit.fetchCategoriesTree().subscribe((categoryTree) => {
+    //   this.categoryTree = this.convertFlatToTree(categoryTree);
+    // });
   }
 
   convertFlatToTree(array: any[]) {
@@ -70,11 +61,7 @@ export class AddUnitComponent {
 
   selectedPanel(panelId: string) {
     this.changeTab = !this.changeTab;
-    this.tab = this.products.find((p) => p._id === panelId);
-  }
-
-  getActionIds(actionId: levelAcess[]) {
-    this.form.get('actionIds')?.setValue(actionId);
+    // this.tab = this.products.find((p) => p._id === panelId);
   }
 
   goTolist() {
@@ -83,6 +70,6 @@ export class AddUnitComponent {
 
   submit() {
     debugger;
-    this.unit.setRole(this.form.value).subscribe();
+    // this.unit.setRole(this.form.value).subscribe();
   }
 }

@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UnitsListComponent } from './component/list/list.component';
 import { CategoryComponent } from './component/category/category.component';
+import { ConnectionPipe } from './config/pipe/connection';
+import { TagsPipe } from './config/pipe/tags';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { CategoryComponent } from './component/category/category.component';
     CategoryComponent,
     UnitsListComponent,
     AddUnitComponent,
+    ConnectionPipe,
+    TagsPipe,
   ],
   imports: [
     CommonModule,
@@ -24,5 +28,6 @@ import { CategoryComponent } from './component/category/category.component';
     SharedModule,
     UnitsRoutingModule,
   ],
+  providers: [ConnectionPipe, TagsPipe],
 })
 export class UnitsModule {}

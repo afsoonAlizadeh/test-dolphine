@@ -1,3 +1,22 @@
 header, main{
     padding: 1rem;
 }
+
+.dashboard {
+    border: 1px solid var(--gray) !important;
+    margin-left: 0.8rem !important;
+    min-width: 5rem !important;
+}
+
+.px-3 {
+    padding: 0 1.25rem !important;
+}
+
+.status {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.prototype{
+    border : 1px solid var(--gray)
+}

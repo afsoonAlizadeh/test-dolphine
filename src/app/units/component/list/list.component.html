@@ -1,43 +1,99 @@
-<header>
-  <button mat-raised-button class="green-bg text-white" (click)="addUnit()">افزودن</button>
+<header class="d-flex align-content-between justify-content-between mt-5">
+  <mat-form-field>
+    <mat-icon class="gray-text fs-2 d-flex justify-content-center align-items-center mx-2" matTextPrefix>search</mat-icon>
+    <input matInput type="text" placeholder="Search">
+    <mat-icon class="gray-text fs-2 d-flex justify-content-center align-items-center mx-2" matTextSuffix>settings</mat-icon>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button class="dorang-bg text-white px-3" (click)="addUnit()">
+      <mat-icon class="fs-2 d-flex justify-content-center align-items-center mx-2" matTextPrefix>add</mat-icon>
+      <span class="fw-bold mx-2">Add Unit</span>
+    </button>
+    <button mat-raised-button class="dashboard" (click)="addUnit()">
+      <mat-icon class="fs-1 gray-text d-flex justify-content-center align-items-center m-0" style="width:3rem ; height:3rem" matTextPrefix>dashboard</mat-icon>
+    </button>
+  </div>
 </header>
 
 
 <main>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="#">
-      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> # </th>
-      <td mat-cell *matCellDef="let i = index"  class="text-end fs-6"> {{i +1}} </td>
-    </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> نام </th>
-      <td mat-cell *matCellDef="let element"  class="text-end fs-6"> {{element.name || '-'}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> توضیحات </th>
-      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.description || '-'}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="active">
-      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> فعال </th>
-      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.active || '-'}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="actionIds">
-      <th mat-header-cell *matHeaderCellDef class="text-end fs-5"> نقش ها </th>
-      <td mat-cell *matCellDef="let element" class="text-end fs-6"> {{element.actionIds || '-'}} </td>
-    </ng-container>
-    
-    <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef class="text-start"></th>
-      <td mat-cell *matCellDef="let element" class="text-start"> 
-        <mat-icon fontIcon="edit" class="fs-3 fw-lighter p-1"></mat-icon>
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef style="max-width:25px ; width:25px ; padding-right:0 !important ;">
+        <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row" style="padding-right:0 !important ;">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
       </td>
     </ng-container>
+  
+      <!-- icon Column -->
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 px-0"> Unit Icon </th>
+        <td mat-cell *matCellDef="let element" class="px-0"> 
+          <img src="./../../../../assets/images/{{element.icon}}" style="width:50px" [alt]="element.icon">
+         </td>
+      </ng-container>
     
+    <!-- title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 text-center"> Unit Title </th>
+      <td mat-cell *matCellDef="let element" class="fs-4 gray-text fw-bold text-center"> {{element.title}} </td>
+    </ng-container>
+  
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 text-center"> Contected Status </th>
+      <td mat-cell *matCellDef="let element" class="fs-4 gray-text fw-bold text-center">
+        <span class="status" [ngClass]="element.status === 'Connected' ? 'green-bg': 'orang-bg'">
+          {{element.status}}
+        </span>
+      </td>
+    </ng-container>
+  
+    <!-- IMEI Column -->
+    <ng-container matColumnDef="IMEI">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 text-center"> IMEI </th>
+      <td mat-cell *matCellDef="let element" class="fs-4 gray-text fw-bold text-center"> {{element.IMEI}} </td>
+    </ng-container>
+
+    <!-- tags Column -->
+    <ng-container matColumnDef="tags">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 text-center"> Tags </th>
+      <td mat-cell *matCellDef="let element" class="fs-4 gray-text fw-bold text-center"> 
+        <span class="status rounded" [ngClass]="element.tags === 'service' ? 'dgreen-bg  text-white': element.tags === 'test' ? 'dorang-bg text-white' : 'prototype'">
+          {{element.tags}}
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- tags Column -->
+    <ng-container matColumnDef="LTP">
+      <th mat-header-cell *matHeaderCellDef class="fw-bold gray-text fs-3 text-center"> Last Time Point </th>
+      <td mat-cell *matCellDef="let element" class="fs-4 gray-text fw-bold text-center"> {{element.LTP}} </td>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="star" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions"  style="max-width:50px ; width:50px">&nbsp;</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon>more_vert</mat-icon>
+      </td>
+    </ng-container>
+  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
   </table>
 </main>
