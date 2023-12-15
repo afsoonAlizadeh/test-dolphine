@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Units } from '../../config/interface/unit';
@@ -12,7 +13,10 @@ import { UnitsService } from '../../units.service';
   styleUrls: ['./list.component.scss'],
 })
 export class UnitsListComponent implements OnInit {
+  @ViewChild('paginator') paginator!: MatPaginator;
+  pageSize = [3, 6, 9];
   ELEMENT_DATA: Units[] = [];
+
   displayedColumns: string[] = [
     'select',
     'icon',
@@ -23,6 +27,7 @@ export class UnitsListComponent implements OnInit {
     'LTP',
     'star',
   ];
+
   dataSource = new MatTableDataSource<Units>(this.ELEMENT_DATA);
   selection = new SelectionModel<Units>(true, []);
 
@@ -37,9 +42,18 @@ export class UnitsListComponent implements OnInit {
     this.fetchUnits();
   }
 
+  onSearchKeyUp(search: any) {
+    let searchKey = search.target.value.toLowerCase().trim();
+    this.dataSource.filter = searchKey;
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   fetchUnits() {
     this.unit.fetchUnits().subscribe((units) => {
-      const x = units.map((un: Units) => ({
+      const unitList = units.map((un: Units) => ({
         id: un.id,
         icon: un.icon,
         title: un.title,
@@ -48,10 +62,12 @@ export class UnitsListComponent implements OnInit {
         tags: this.tagPipe.transform(un.tags),
         LTP: un.LTP,
       }));
-      this.dataSource = new MatTableDataSource(x);
+      this.dataSource = new MatTableDataSource(unitList);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
+  // select
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;

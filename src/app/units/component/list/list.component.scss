@@ -20,3 +20,15 @@ header, main{
 .prototype{
     border : 1px solid var(--gray)
 }
+
+.pagination{
+    position: fixed;
+    bottom: 2rem;
+}
+
+::ng-deep .mat-mdc-select{
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}

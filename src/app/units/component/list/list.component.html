@@ -1,8 +1,8 @@
 <header class="d-flex align-content-between justify-content-between mt-5">
-  <mat-form-field>
-    <mat-icon class="gray-text fs-2 d-flex justify-content-center align-items-center mx-2" matTextPrefix>search</mat-icon>
-    <input matInput type="text" placeholder="Search">
-    <mat-icon class="gray-text fs-2 d-flex justify-content-center align-items-center mx-2" matTextSuffix>settings</mat-icon>
+  <mat-form-field class="d-flex justify-content-center align-items-center" style="width:400px">
+    <input matInput type="text" placeholder="Search" (keyup)="onSearchKeyUp($event)">
+    <mat-icon class="gray-text d-flex justify-content-center align-items-center mx-2" matTextPrefix>search</mat-icon>
+    <mat-icon class="gray-text d-flex justify-content-center align-items-center mx-2" matTextSuffix>settings</mat-icon>
   </mat-form-field>
   <div>
     <button mat-raised-button class="dorang-bg text-white px-3" (click)="addUnit()">
@@ -17,7 +17,7 @@
 
 
 <main>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
 
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
@@ -96,4 +96,10 @@
         (click)="selection.toggle(row)">
     </tr>
   </table>
+  <mat-paginator
+  class="pagination"
+  #paginator
+  [pageSizeOptions]="pageSize"
+  showFirstLastButtons
+></mat-paginator>
 </main>
